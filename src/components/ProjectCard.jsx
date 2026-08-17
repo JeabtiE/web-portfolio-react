@@ -1,15 +1,64 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+function ProjectCardCarousel({ images, title }) {
+  const [index, setIndex] = useState(0);
+  const hoveringRef = useRef(false);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const timer = setInterval(() => {
+      if (!hoveringRef.current) {
+        setIndex((i) => (i + 1) % images.length);
+      }
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div
+      className="project-card__carousel"
+      onMouseEnter={() => (hoveringRef.current = true)}
+      onMouseLeave={() => (hoveringRef.current = false)}
+    >
+      {images.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          className="project-card__image project-card__carousel-slide"
+          alt={`${title} ${i + 1}`}
+          style={{ opacity: i === index ? 1 : 0 }}
+        />
+      ))}
+      {images.length > 1 && (
+        <div className="project-card__carousel-dots">
+          {images.map((src, i) => (
+            <button
+              key={src}
+              type="button"
+              className={
+                "project-card__carousel-dot" +
+                (i === index ? " project-card__carousel-dot--active" : "")
+              }
+              aria-label={`Show image ${i + 1}`}
+              onClick={() => setIndex(i)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function ProjectCard({ project }) {
   const [expanded, setExpanded] = useState(false);
+  const images =
+    project.images && project.images.length > 0
+      ? project.images
+      : [project.image];
 
   return (
     <div className="card project-card">
-      <img
-        src={project.image}
-        className="project-card__image"
-        alt={project.title}
-      />
+      <ProjectCardCarousel images={images} title={project.title} />
       <div className="project-card__body">
         <div className="project-card__tags">
           {project.tags.map((tag) => (

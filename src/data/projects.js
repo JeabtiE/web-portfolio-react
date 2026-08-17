@@ -1,5 +1,24 @@
 const projects = [
   {
+    id: "rm-advantage-engine",
+    image: "/img/rm-advantage-engine/rmae-01.jpg",
+    images: [
+      "/img/rm-advantage-engine/rmae-01.jpg",
+      "/img/rm-advantage-engine/rmae-02.jpg",
+      "/img/rm-advantage-engine/rmae-03.jpg",
+      "/img/rm-advantage-engine/rmae-04.jpg",
+      "/img/rm-advantage-engine/rmae-05.jpg",
+    ],
+    tags: ["React", "Vite", "Claude API", "Fintech"],
+    title: "AI × Finance Hackathon — CFA Society Thailand",
+    summary:
+      "🏆 1st Place. Sole technical lead on a 5-person team that built an AI system helping wealth-management RMs turn overlooked market moves into a compliance-approved client call list.",
+    details:
+      'As AI/Tech Lead, built the full agent pipeline and frontend end-to-end: a Claude-powered pipeline that spots when the market reacts differently than expected to news, then routes the insight through a human "Four Eyes" approval step before it becomes a personalized call script for each affected client — keeping a licensed reviewer in the loop on every client-facing recommendation.',
+    award: "🏆 1st Place, AI × Finance Hackathon (CFA Society Thailand, 2026)",
+    link: "https://github.com/JeabtiE/RM-Advantage-Engine",
+  },
+  {
     id: "watermelon",
     image: "/img/watermelon.png",
     tags: ["Python", "OpenCV", "Computer Vision"],
